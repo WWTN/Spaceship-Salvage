@@ -26,9 +26,12 @@ function love.draw()
   end
   
   function love.mousepressed()
-      if (love.mouse.getX >200) and (love.mouse.getX < 300) and (love.mouse.getY > 300) and (love.mouse.getY < 400)
+      if (love.mouse.getX >200)
+      and (love.mouse.getX < 300) 
+      and (love.mouse.getY > 300) 
+      and (love.mouse.getY < 400)
       then
-        
+        print("Try again later, lol")
       
       end
     
