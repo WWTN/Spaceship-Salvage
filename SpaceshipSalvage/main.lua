@@ -1,3 +1,5 @@
+local sti = require "sti"
+
 function love.load()
   
   background= love.graphics.newImage("sprites/bg1.jpg")
