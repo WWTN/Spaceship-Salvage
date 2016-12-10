@@ -9,6 +9,7 @@ function love.load()
   
   backgroundQuad = love.graphics.newQuad(1,1,widthX,heightY,720/2,1280/2)
   
+      map = sti("maps/testMap1.lua")
   
    startBtn = love.graphics.newImage("sprites/btngrphc1.jpg")
    scoreBtn = love.graphics.newImage("sprites/btngrphc2.jpg")
@@ -23,21 +24,41 @@ function love.load()
 end
 
   
-function love.update()
+function love.update(dt)
  mouseposX, mouseposY  = love.mouse.getPosition()
  
  if isGameRunning == false then
     menuUpdate()
+    
+  else
+    gameUpdate(dt)
+    
  end
  
  
  end
 function love.draw()
   love.graphics.draw(background, backgroundQuad, 0, 0)
-    game_screen()
-  end
   
-  function game_screen()
+  
+    
+    if isGameRunning == false then
+    menu_screen()
+    
+  else
+    game_screen()
+    
+ end
+    
+  end
+ 
+ 
+ function game_screen()
+    map:draw()
+ end
+ 
+ 
+  function menu_screen()
     
     love.graphics.draw(startBtn, 200, 300)
     
@@ -45,11 +66,13 @@ function love.draw()
     
   end
   
-  function love.mousepressed()
+ 
+ 
+ function love.mousepressed()
     
       if (mouseLocations.start == true) then
 
-        startBtn = love.graphics.newImage("sprites/btngrphcpshd1.jpg")
+        isGameRunning = true
       
       end
     
@@ -104,3 +127,8 @@ function menuUpdate()
  updateButtonGraphics()
   
 end
+
+function gameUpdate(dt)
+   map:update(dt)
+  
+  end
