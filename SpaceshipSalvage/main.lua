@@ -38,7 +38,7 @@ function love.update(dt)
  
  end
 function love.draw()
-  love.graphics.draw(background, backgroundQuad, 0, 0)
+  
   
   
     
@@ -59,7 +59,7 @@ function love.draw()
  
  
   function menu_screen()
-    
+    love.graphics.draw(background, backgroundQuad, 0, 0)
     love.graphics.draw(startBtn, 200, 300)
     
     love.graphics.draw(scoreBtn, 200, 500)
