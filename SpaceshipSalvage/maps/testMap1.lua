@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 1,
+  nextobjectid = 3,
   properties = {},
   tilesets = {
     {
@@ -142,14 +142,28 @@ return {
     },
     {
       type = "objectgroup",
-      name = "Player",
+      name = "Spawn Point",
       visible = true,
       opacity = 1,
       offsetx = 4,
       offsety = -5.33333,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 1,
+          name = "Player",
+          type = "",
+          shape = "rectangle",
+          x = 145.333,
+          y = 94.6667,
+          width = 32,
+          height = 37.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
     }
   }
 }
