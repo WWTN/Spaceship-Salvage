@@ -19,7 +19,7 @@ function love.load()
    mouseLocations.score = false
    
    
-   local layer = map:addCustomLayer("Sprites", 8)
+    layer = map:addCustomLayer("Sprites", 8)
    
    local mainchar
     for k, object in pairs(map.objects) do
@@ -29,7 +29,7 @@ function love.load()
         end
     end
     
-     local dude = love.graphics.newImage("sprites/dude.png")
+      dude = love.graphics.newImage("sprites/dude.png")
      
      
     layer.mainchar = {
