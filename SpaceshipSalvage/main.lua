@@ -48,7 +48,7 @@ function love.draw()
     menu_screen()
     
   else
-   -- game_screen()
+    game_screen()
     
  end
     
@@ -57,9 +57,13 @@ function love.draw()
  
  function game_screen()
     map:draw() 
+    
+    love.graphics.draw(dude, 100, 100)
  end
  
  
+ 
+
   function menu_screen()
     love.graphics.draw(background, backgroundQuad, 0, 0)
     love.graphics.draw(startBtn, 200, 300)
