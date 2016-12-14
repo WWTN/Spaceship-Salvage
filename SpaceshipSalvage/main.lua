@@ -1,4 +1,6 @@
 local sti = require "sti" -- Simple Tiled Implementation, open-source interpreter and interface
+local bump = require 'bump' -- bump.lua, open-source collision detection that STI has a module for
+
 
 function love.load()
   
@@ -27,56 +29,30 @@ function love.load()
     
     layer = map:addCustomLayer("Sprites", 8)
    
-  mainchar = {}
-    for k, object in pairs(map.objects) do
-        if object.name == "Player" then
-            mainchar = object
-            break
-        end
-    end
+  
     
     
       dude = love.graphics.newImage("sprites/dude.png")
      
-   
+   spawnpoint = {
+     x = 100,
+     y = 100 }
+    
      
-    layer.mainchar = {
+    mainchar = {
         sprite = dude,
-        x      = mainchar.x,
-        y      = mainchar.y,
+        x      = spawnpoint.x,
+        y      = spawnpoint.y,
         ox     = dude:getWidth() / 2,
         oy     = dude:getHeight() / 1.35
     }
 
-layer.update = function(self, dt)
+
         -- 96 pixels per second
-        local speed = 96
+      speed = 96
 
-        -- Move player up
-        if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
-            self.mainchar.y = self.mainchar.y - speed * dt
-        end
-
-        -- Move player down
-        if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
-            self.player.y = self.mainchar.y + speed * dt
-        end
-
-        -- Move player left
-        if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
-            self.mainchar.x = self.mainchar.x - speed * dt
-        end
-
-        -- Move player right
-        if love.mainchar.isDown("d") or love.keyboard.isDown("right") then
-            self.mainchar.x = self.mainchar.x + speed * dt
-        end
-    end
-
-
-    -- Draw player
-    
-
+        isGrounded = false
+        verticalSpeed = 0
  
 end
 
@@ -113,26 +89,10 @@ function love.draw()
  function game_screen()
     map:draw() 
     
-    --love.graphics.draw(dude, 100, 100)
+    love.graphics.draw(dude, mainchar.x, mainchar.y)
     
     
-    layer.draw = function(self)
-        love.graphics.draw(
-            self.mainchar.sprite,
-            math.floor(self.mainchar.x),
-            math.floor(self.mainchar.y),
-            0,
-            1,
-            1,
-            self.mainchar.ox,
-            self.mainchar.oy
-        )
 
-        -- Temporarily draw a point at our location so we know
-        -- that our sprite is offset properly
-        love.graphics.setPointSize(5)
-        love.graphics.points(math.floor(self.player.x), math.floor(self.player.y))
-    end
 
  end
  
@@ -288,4 +248,23 @@ end
 function gameUpdate(dt)
    map:update(dt)
    
+   
+   if isGrounded == false then
+     mainchar.y = mainchar.y + verticalSpeed
+     verticalSpeed = verticalSpeed + 0.1
+     end
+   
+    if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
+           mainchar.y = mainchar.y - speed * dt
+        end
+        
+        -- Move player left
+        if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
+            mainchar.x = mainchar.x - speed * dt
+        end
+
+        -- Move player right
+        if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
+            mainchar.x = mainchar.x + speed * dt
+        end
   end
