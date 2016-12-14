@@ -22,6 +22,61 @@ function love.load()
    
    
    isGameRunning = false -- swaps between game and menu. Crude but effective.
+   
+  map = sti("maps/testMap1.lua")
+    
+    layer = map:addCustomLayer("Sprites", 8)
+   
+  mainchar = {}
+    for k, object in pairs(map.objects) do
+        if object.name == "Player" then
+            mainchar = object
+            break
+        end
+    end
+    
+    
+      dude = love.graphics.newImage("sprites/dude.png")
+     
+   
+     
+    layer.mainchar = {
+        sprite = dude,
+        x      = mainchar.x,
+        y      = mainchar.y,
+        ox     = dude:getWidth() / 2,
+        oy     = dude:getHeight() / 1.35
+    }
+
+layer.update = function(self, dt)
+        -- 96 pixels per second
+        local speed = 96
+
+        -- Move player up
+        if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
+            self.mainchar.y = self.mainchar.y - speed * dt
+        end
+
+        -- Move player down
+        if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
+            self.player.y = self.mainchar.y + speed * dt
+        end
+
+        -- Move player left
+        if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
+            self.mainchar.x = self.mainchar.x - speed * dt
+        end
+
+        -- Move player right
+        if love.mainchar.isDown("d") or love.keyboard.isDown("right") then
+            self.mainchar.x = self.mainchar.x + speed * dt
+        end
+    end
+
+
+    -- Draw player
+    
+
  
 end
 
@@ -58,7 +113,27 @@ function love.draw()
  function game_screen()
     map:draw() 
     
-    love.graphics.draw(dude, 100, 100)
+    --love.graphics.draw(dude, 100, 100)
+    
+    
+    layer.draw = function(self)
+        love.graphics.draw(
+            self.mainchar.sprite,
+            math.floor(self.mainchar.x),
+            math.floor(self.mainchar.y),
+            0,
+            1,
+            1,
+            self.mainchar.ox,
+            self.mainchar.oy
+        )
+
+        -- Temporarily draw a point at our location so we know
+        -- that our sprite is offset properly
+        love.graphics.setPointSize(5)
+        love.graphics.points(math.floor(self.player.x), math.floor(self.player.y))
+    end
+
  end
  
  
@@ -140,8 +215,10 @@ function gameLoad()
         end
     end
     
+    
       dude = love.graphics.newImage("sprites/dude.png")
      
+   
      
     layer.mainchar = {
         sprite = dude,
