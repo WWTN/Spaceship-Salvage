@@ -1,3 +1,6 @@
+ 
+ 
+ 
  sti = require "sti" -- Simple Tiled Implementation, open-source interpreter and interface
  bump = require 'bump' -- bump.lua, open-source collision detection that STI has a module for
 
@@ -28,10 +31,11 @@ function love.load()
    
    isGameRunning = false -- swaps between game and menu. Crude but effective.
    
-  
+  changeCount = 0
     
     
       dude = love.graphics.newImage("sprites/dude.png")
+      door = love.graphics.newImage("sprites/door.png")
      
    spawnpoint = {
      x = 100,
@@ -93,7 +97,7 @@ function love.draw()
     map:draw() 
     
     love.graphics.draw(dude, mainchar.x, mainchar.y)
-    
+    love.graphics.draw(door, 550, 480)
     
 
 
@@ -187,7 +191,7 @@ function gameLoad()
   map = sti("maps/testMap1.lua", {"bump"}, 0, 0)
     
   
--- bump_init(map, world)
+--map:bump_init(map, world)
    
   
     
@@ -231,10 +235,24 @@ function gameUpdate(dt)
             mainchar.x = mainchar.x + speed * dt
         end
         
-        if key == "o" then
+        if (love.keyboard.isDown("o")) and (changeCount == 0)
+        
+        then
+          
         mainchar.x = spawnpoint.x
         mainchar.y = spawnpoint.y
         verticalSpeed = 0
-        sti("maps/testMap2.lua", {"bump"}, 0, 0)
-        end
+       map = sti("maps/testMap2.lua", {"bump"}, 0, 0)
+        changeCount = 1;
+      end
+      
+      if  (mainchar.y> 1000) then
+      
+      isGameRunning = false
+      sti:flush()
+      
+      end
+      
+      
+      
   end
