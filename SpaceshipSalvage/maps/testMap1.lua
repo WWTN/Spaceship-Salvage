@@ -30,6 +30,21 @@ return {
       tilecount = 156,
       tiles = {
         {
+          id = 1,
+          properties = {
+            ["collidable"] = true,
+            ["door"] = true
+          }
+        },
+        {
+          id = 15,
+          properties = {
+            ["collidable"] = true,
+            ["powerup_pad"] = true,
+            ["powerup_type"] = 1
+          }
+        },
+        {
           id = 26,
           properties = {
             ["collidable"] = true,
@@ -59,6 +74,13 @@ return {
                 properties = {}
               }
             }
+          }
+        },
+        {
+          id = 72,
+          properties = {
+            ["collidable"] = true,
+            ["destructable"] = false
           }
         },
         {
@@ -235,31 +257,6 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-      }
-    },
-    {
-      type = "objectgroup",
-      name = "Spawn Point",
-      visible = true,
-      opacity = 1,
-      offsetx = 4,
-      offsety = -5.33333,
-      draworder = "topdown",
-      properties = {},
-      objects = {
-        {
-          id = 1,
-          name = "Player",
-          type = "",
-          shape = "rectangle",
-          x = 145.333,
-          y = 94.6667,
-          width = 41.3333,
-          height = 37.3333,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
       }
     }
   }

@@ -2,6 +2,19 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="3">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="72" tileheight="72" tilecount="156" columns="12">
   <image source="spritesheets/tiles_spritesheet.png" width="914" height="936"/>
+  <tile id="1">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+    <property name="door" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+    <property name="powerup_pad" type="bool" value="true"/>
+    <property name="powerup_type" type="int" value="1"/>
+   </properties>
+  </tile>
   <tile id="26">
    <properties>
     <property name="collidable" type="bool" value="true"/>
@@ -10,6 +23,12 @@
    <objectgroup draworder="index">
     <object id="1" x="0.333333" y="0" width="70.3333" height="39.6667"/>
    </objectgroup>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+    <property name="destructable" type="bool" value="false"/>
+   </properties>
   </tile>
   <tile id="86">
    <properties>
@@ -102,7 +121,4 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Spawn Point" offsetx="4" offsety="-5.33333">
-  <object id="1" name="Player" x="145.333" y="94.6667" width="41.3333" height="37.3333"/>
- </objectgroup>
 </map>

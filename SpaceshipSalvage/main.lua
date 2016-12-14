@@ -16,6 +16,9 @@ function love.load()
    startBtn = love.graphics.newImage("sprites/btngrphc1.jpg")
    scoreBtn = love.graphics.newImage("sprites/btngrphc2.jpg")
    
+   scorePressed = false
+   FAILMODE = love.graphics.newImage("sprites/bad.png")
+   
    mouseLocations = {}
    mouseLocations.start = false
    mouseLocations.score = false
@@ -25,12 +28,7 @@ function love.load()
    
    isGameRunning = false -- swaps between game and menu. Crude but effective.
    
-  map = sti("maps/testMap1.lua", {"bump"}, 0, 0)
-    
-    layer = map:addCustomLayer("Sprites", 8)
-   
   
-      bump_init (map, world)
     
     
       dude = love.graphics.newImage("sprites/dude.png")
@@ -83,9 +81,11 @@ function love.draw()
     
   else
     game_screen()
-    
+   
  end
-    
+     if scorePressed == true then
+    love.graphics.draw(FAILMODE, 300, 300)
+    end
   end
  
  
@@ -118,14 +118,30 @@ function love.draw()
 
         isGameRunning = true
         gameLoad()
+        mouseLocations.start = false
       
-      end
+    end
     
+    
+    if (mouseLocations.score == true) and (scorePressed == false) then
+        scorePressed = true
+      
+      
+    else if 
+      (mouseLocations.score == true) 
+      and (scorePressed == true) then
+        
+        scorePressed = false
+        end
+      end
     
   end
   
   function mouseOverCheck()
-    if (love.mouse.getX() >200) -- Possibly the single crudest chunk of code I've ever written, but _fuck_ lua.
+   if (isGameRunning == false) then
+   
+    
+      if (love.mouse.getX() >200) -- Possibly the single crudest chunk of code I've ever written, but _fuck_ lua.
       and (love.mouse.getX() < 300) 
       and (love.mouse.getY() > 300) 
       and (love.mouse.getY() < 400)
@@ -147,6 +163,7 @@ function love.draw()
          mouseLocations.start = false
         end
     
+    end
       
   end
     end
@@ -167,7 +184,10 @@ end
 
 function gameLoad()
    
+  map = sti("maps/testMap1.lua", {"bump"}, 0, 0)
+    
   
+    --  bump_init(map, world)
    
   
     
@@ -175,8 +195,7 @@ function gameLoad()
       dude = love.graphics.newImage("sprites/dude.png")
      
    
-     
-    map:removeLayer("Spawn Point")-- yes I add a layer and remove it immediately but I can't work out why it breaks when I don't so whatever
+   
   
   world:add(mainchar, mainchar.x,mainchar.y, mainchar.ox, mainchar.oy)
   end
@@ -208,5 +227,12 @@ function gameUpdate(dt)
         -- Move player right
         if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
             mainchar.x = mainchar.x + speed * dt
+        end
+        
+        if key == "o" then
+        mainchar.x = spawnpoint.x
+        mainchar.y = spawnpoint.y
+        verticalSpeed = 0
+        sti("maps/testMap2.lua", {"bump"}, 0, 0)
         end
   end
