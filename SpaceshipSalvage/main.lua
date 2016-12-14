@@ -30,6 +30,7 @@ function love.load()
     layer = map:addCustomLayer("Sprites", 8)
    
   
+      bump_init (map, world)
     
     
       dude = love.graphics.newImage("sprites/dude.png")
@@ -166,8 +167,7 @@ end
 
 function gameLoad()
    
-    bump_init(map, world)
-    
+  
    
   
     

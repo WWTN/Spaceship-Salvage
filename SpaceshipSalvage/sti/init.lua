@@ -3,7 +3,7 @@
 -- @author Landon Manning
 -- @copyright 2016
 -- @license MIT/X11
-
+ bump = require 'bump'
 local STI = {
 	_LICENSE     = "MIT/X11",
 	_URL         = "https://github.com/karai17/Simple-Tiled-Implementation",
