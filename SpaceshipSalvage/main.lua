@@ -9,7 +9,7 @@ function love.load()
   widthX = love.graphics.getWidth()
   heightY = love.graphics.getHeight()
   
-  backgroundQuad = love.graphics.newQuad(1,1,widthX,heightY,720/2,1280/2)
+  backgroundQuad = love.graphics.newQuad(1,1,background:getWidth(),background:getHeight(),720/2,1280/2)
   
     
   
@@ -187,17 +187,19 @@ function gameLoad()
   map = sti("maps/testMap1.lua", {"bump"}, 0, 0)
     
   
-    --  bump_init(map, world)
+-- bump_init(map, world)
    
   
     
     
       dude = love.graphics.newImage("sprites/dude.png")
-     
+     landHere = {}
    
    
   
   world:add(mainchar, mainchar.x,mainchar.y, mainchar.ox, mainchar.oy)
+  
+  world:add(landHere, 0, 200, 400, 20)
   end
 
 function menuUpdate()
@@ -215,8 +217,8 @@ function gameUpdate(dt)
      verticalSpeed = verticalSpeed + 0.1
      end
    
-    if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
-           mainchar.y = mainchar.y - speed * dt
+    if (love.keyboard.isDown("w") or love.keyboard.isDown("up")) and (verticalSpeed > -3) then
+           verticalSpeed  = verticalSpeed - 1
         end
         
         -- Move player left

@@ -22,6 +22,8 @@ local lg         = love.graphics
 local Map        = {}
 Map.__index      = Map
 
+
+
 local function new(map, plugins, ox, oy)
 	-- Check for valid map type
 	local ext = map:sub(-4, -1)
