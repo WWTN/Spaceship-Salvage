@@ -132,7 +132,7 @@ function gameLoad()
     
     layer = map:addCustomLayer("Sprites", 8)
    
-   local mainchar
+  mainchar = {}
     for k, object in pairs(map.objects) do
         if object.name == "Player" then
             mainchar = object
