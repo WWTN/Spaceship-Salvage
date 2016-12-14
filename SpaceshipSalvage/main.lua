@@ -1,5 +1,5 @@
-local sti = require "sti" -- Simple Tiled Implementation, open-source interpreter and interface
-local bump = require 'bump' -- bump.lua, open-source collision detection that STI has a module for
+ sti = require "sti" -- Simple Tiled Implementation, open-source interpreter and interface
+ bump = require 'bump' -- bump.lua, open-source collision detection that STI has a module for
 
 
 function love.load()
@@ -165,11 +165,9 @@ function love.draw()
 end
 
 function gameLoad()
-    map = sti("maps/testMap1.lua")
+   
+    bump_init(map, world)
     
-    bump_init (world)
-    
-    layer = map:addCustomLayer("Sprites", 8)
    
   
     

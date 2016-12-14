@@ -5,6 +5,7 @@
   <tile id="26">
    <properties>
     <property name="collidable" type="bool" value="true"/>
+    <property name="ground" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index">
     <object id="1" x="0.333333" y="0" width="70.3333" height="39.6667"/>
@@ -13,6 +14,7 @@
   <tile id="86">
    <properties>
     <property name="collidable" type="bool" value="true"/>
+    <property name="ground" type="bool" value="false"/>
    </properties>
    <objectgroup draworder="index">
     <object id="1" x="0.333333" y="0" width="69.3333" height="70.3333"/>
@@ -21,6 +23,7 @@
   <tile id="110">
    <properties>
     <property name="collidable" type="bool" value="true"/>
+    <property name="ground" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index">
     <object id="2" x="0" y="0" width="70.3333" height="70.3333"/>

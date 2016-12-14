@@ -32,7 +32,8 @@ return {
         {
           id = 26,
           properties = {
-            ["collidable"] = true
+            ["collidable"] = true,
+            ["ground"] = true
           },
           objectGroup = {
             type = "objectgroup",
@@ -63,7 +64,8 @@ return {
         {
           id = 86,
           properties = {
-            ["collidable"] = true
+            ["collidable"] = true,
+            ["ground"] = false
           },
           objectGroup = {
             type = "objectgroup",
@@ -94,7 +96,8 @@ return {
         {
           id = 110,
           properties = {
-            ["collidable"] = true
+            ["collidable"] = true,
+            ["ground"] = true
           },
           objectGroup = {
             type = "objectgroup",
