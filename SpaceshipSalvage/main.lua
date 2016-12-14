@@ -215,6 +215,7 @@ end
 function gameUpdate(dt)
    map:update(dt)
    
+  
    
    if isGrounded == false then
      mainchar.y = mainchar.y + verticalSpeed
@@ -251,8 +252,28 @@ function gameUpdate(dt)
       isGameRunning = false
       sti:flush()
       
-      end
+    end
+    
+    local hitTest = CheckCollision(mainchar.x, mainchar.y, mainchar.ox, mainchar.oy, 550, 480, door:getWidth(), door:getHeight())
+    
+    
+  if (hitTest) then
+     mainchar.x = spawnpoint.x
+        mainchar.y = spawnpoint.y
+        verticalSpeed = 0
+       map = sti("maps/testMap2.lua", {"bump"}, 0, 0)
+     end
+     
+  
+  
+end
       
       
-      
-  end
+
+  
+  function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+  return x1 < x2+w2 and       
+         x2 < x1+w1 and
+         y1 < y2+h2 and
+         y2 < y1+h1
+end
